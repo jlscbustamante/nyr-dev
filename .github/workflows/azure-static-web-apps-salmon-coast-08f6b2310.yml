@@ -14,6 +14,9 @@ jobs:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
+    permissions:
+      contents: write # Grants write permissions
+      pull-requests: write # Also useful for certain actions
     steps:
       - uses: actions/checkout@v3
         with:
@@ -44,4 +47,5 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_COAST_08F6B2310 }}
           action: "close"
+
 
